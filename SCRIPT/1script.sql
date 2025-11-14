@@ -1,0 +1,10 @@
+CREATE DATABASE MI_FICHA_FAVORITA;
+USE MI_FICHA_FAVORITA;
+
+CREATE TABLE USUARIOS(
+	ID INT PRIMARY KEY NOT NULL auto_increment,
+    NOMBRE varchar(50) not null,
+    EDAD int not null
+);
+select * from USUARIOS;
+
