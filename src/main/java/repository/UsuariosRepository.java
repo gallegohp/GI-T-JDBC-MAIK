@@ -138,5 +138,17 @@ public class UsuariosRepository {
         }
         return usuario;
     }
+    public Usuarios eliminarUsuarios (long id){
+        String sql = "DELATE FROM USUARIOS WHERE ID = ? ";
+        Usuarios usuario = null;
+
+            try(Connection connection = Conexion.getConnection()){
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        return usuario;
+    }
 
 }
