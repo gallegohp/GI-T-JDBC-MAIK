@@ -13,12 +13,15 @@ public class Main {
         boolean Ejecutando = true;
 
         while (Ejecutando){
-            System.out.println("1. Ingresar usuario.\n2. Listar usuarios.\n3. Buscar con nombre.\n4. Buscar con ID.\n5. Editar usuario.\n6. salir");
-
+            System.out.println("#####################################");
+            System.out.println("1. Ingresar usuario.\n2. Listar usuarios.\n3. Buscar con nombre.\n4. Buscar con ID.\n5. Editar usuario.\n6. Eliminar por ID.\n7. salir");
             byte primeraDesicion = scanner.nextByte();
+            System.out.println("#####################################");
+
 
             switch (primeraDesicion){
                 case 1:
+                    //insetar
                     System.out.println("Ingrese el nombre del usuario:");
                     String nombre = scanner.nextLine();
                     System.out.println("Ingrese la edad del usuario:");
@@ -29,16 +32,19 @@ public class Main {
                     usuariosRepository.insetarUsuario(usuario);
                     break;
                 case 2:
+                    System.out.println("==================================");
                     System.out.println("lista de usuarios");
 
                     for (Usuarios usuarios : usuariosRepository.listarUsuarios()) {
-                        System.out.println("id" + usuarios.getId() + "\n" +
-                                "nombre:" + usuarios.getNombre() + "\n" +
+                        System.out.println("id: " + usuarios.getId() + "\n" +
+                                "nombre: " + usuarios.getNombre() + "\n" +
                                 "edad: " + usuarios.getEdad());
+                        System.out.println("------------------------");
+
                     }
                     break;
                 case 3:
-
+                    System.out.println("==================================");
                     System.out.println("Ingrese el nombre a buscar:");
                     scanner.nextLine();
                     String textoBuscado = scanner.nextLine(); // Esto buscara nombres
@@ -51,6 +57,7 @@ public class Main {
                         System.out.println("No se encontraron usuarios con ese nombre.");
                     } else {
                         for (Usuarios usuarioFiltrado : resultados) {
+                            System.out.println("-----------------------------");
                             System.out.println("ID: " + usuarioFiltrado.getId() + ", Nombre: " + usuarioFiltrado.getNombre() + ", Edad: " + usuarioFiltrado.getEdad());
                         }
                     }
@@ -62,9 +69,13 @@ public class Main {
                     Usuarios resultadosBusquedaId = usuariosRepository.buscarPorId(idBuscarUsuario);
 
                     if (resultadosBusquedaId != null){
-                        System.out.println("id" + resultadosBusquedaId.getId() + "\n" +
-                                "nombre:" + resultadosBusquedaId.getNombre() + "\n" +
+                        System.out.println("----------------------");
+
+                        System.out.println("id: " + resultadosBusquedaId.getId() + "\n" +
+                                "nombre: " + resultadosBusquedaId.getNombre() + "\n" +
                                 "edad: " + resultadosBusquedaId.getEdad());
+                        System.out.println("----------------------");
+
                     }
                     break;
                 case 5:
@@ -79,12 +90,20 @@ public class Main {
                     Usuarios resultadoEdicionId = usuariosRepository.editarUsuarioNombre(idEditar,nombreEditar);
 
                     if (resultadoEdicionId != null){
-                        System.out.println("id" + resultadoEdicionId.getId() + "\n" +
-                                "nombre:" + resultadoEdicionId.getNombre() + "\n" +
+                        System.out.println("----------------------");
+                        System.out.println("id: " + resultadoEdicionId.getId() + "\n" +
+                                "nombre: " + resultadoEdicionId.getNombre() + "\n" +
                                 "edad: " + resultadoEdicionId.getEdad());
+                        System.out.println("----------------------");
+
                     }
                     break;
                 case 6:
+                    System.out.println("Ingrese el id del usuario a ELIMINAR: ");
+                    long idEliminar = scanner.nextLong();
+                    usuariosRepository.eliminarUsuarios(idEliminar);
+break;
+                case 7:
                     Ejecutando = false;
                     break;
                 default:

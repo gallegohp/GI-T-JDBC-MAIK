@@ -21,7 +21,7 @@ public class UsuariosRepository {
         try (Connection connection = Conexion.getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            //Sirve para 2 parametros, preparar una consulta y accedemos
+            //Sirve para 1 parametros, preparar una consulta y accedemos
             preparedStatement.setString(1, usuario.getNombre());
             preparedStatement.setByte(2, usuario.getEdad());
 
@@ -36,7 +36,7 @@ public class UsuariosRepository {
     public List<Usuarios> listarUsuarios() {
         String sql = "SELECT * FROM USUARIOS";
 
-        List<Usuarios> usuarios = null;
+        List<Usuarios> usuarios = null;// Instanciar
         try (Connection connection = Conexion.getConnection()) {
             usuarios = new ArrayList<>();
 
@@ -138,17 +138,22 @@ public class UsuariosRepository {
         }
         return usuario;
     }
-    public Usuarios eliminarUsuarios (long id){
-        String sql = "DELATE FROM USUARIOS WHERE ID = ? ";
+    public void eliminarUsuarios (long id){
+        String sql = "DELETE FROM USUARIOS WHERE ID = ? ";
         Usuarios usuario = null;
 
             try(Connection connection = Conexion.getConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
+                preparedStatement.setLong(1, id);
+
+                preparedStatement.executeUpdate();
+
+                System.out.println("Cambio Exitoso");
             }catch (Exception e){
                 e.printStackTrace();
             }
 
-        return usuario;
     }
 
 }

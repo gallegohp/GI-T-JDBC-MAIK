@@ -7,4 +7,5 @@ CREATE TABLE USUARIOS(
     EDAD int not null
 );
 select * from USUARIOS;
-
+UPDATE USUARIOS SET NOMBRE = "Villa" WHERE ID = 2; 
+select * from USUARIOS;
